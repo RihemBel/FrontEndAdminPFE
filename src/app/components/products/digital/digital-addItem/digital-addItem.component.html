@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row product-adding">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>General</h5>
+        </div>
+
+        <div class="card-body">
+          <form (ngSubmit)="saveItem()" [formGroup]="editForm" class="needs-validation">
+            <div class="form">
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustom01"><span>*</span> Name</label>
+                <input class="form-control" formControlName="name" id="validationCustom01" name="name" required=""
+                       type="text">
+                <div
+                  *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('name')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustom05"><span>*</span> SKU</label>
+                <input class="form-control" formControlName="sku" id="validationCustom05" name="sku" required=""
+                       type="text">
+                <div
+                  *ngIf="editForm.get('sku')!.invalid && (editForm.get('sku')!.dirty || editForm.get('sku')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('sku')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustomtitle"><span>*</span> Quantity</label>
+                <input class="form-control" formControlName="qttInStock" id="validationCustomtitle" name="qttInStock"
+                       required="" type="text">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label"><span>*</span> Products</label>
+                <select [(ngModel)]="selectedProduct" class="custom-select" formControlName="prod" name="prod"
+                        required="">
+                  <option *ngFor="let group of products" [ngValue]="group">{{group.name}}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="validationCustom02"><span>*</span> Item Price</label>
+                <input class="form-control" formControlName="price" id="validationCustom02" name="price" required=""
+                       type="text">
+              </div>
+              <div class="form-group mb-0">
+                <label class="col-form-label pt-0"><span>*</span> Item Upload</label>
+                <input (change)="selectFile($event)" class="form-control" formControlName="image" id="validationCustom03" name="image"
+                       type="file">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="description"><span>*</span> Description</label>
+                <textarea class="form-control" formControlName="description" id="description" name="description" required=""></textarea>
+                <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('description')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+              <div class="product-buttons text-center">
+                <button (click)="saveItem()" class="btn btn-primary mr-1" type="button">Add</button>
+                <button class="btn btn-light" type="button">Discard</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

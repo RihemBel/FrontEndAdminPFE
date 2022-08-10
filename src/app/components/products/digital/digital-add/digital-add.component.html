@@ -1,0 +1,117 @@
+<div class="container-fluid">
+  <div class="row product-adding">
+    <div class="col-xl-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>General</h5>
+        </div>
+
+        <div class="card-body">
+          <form (ngSubmit)="saveProduct()" [formGroup]="editForm" class="needs-validation">
+            <div class="form">
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustom01"><span>*</span> Name</label>
+                <input class="form-control" formControlName="name" id="validationCustom01" name="name" required=""
+                       type="text">
+                <div
+                  *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('name')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustom05"><span>*</span> SKU</label>
+                <input class="form-control" formControlName="sku" id="validationCustom05" name="sku" required=""
+                       type="text">
+                <div
+                  *ngIf="editForm.get('sku')!.invalid && (editForm.get('sku')!.dirty || editForm.get('sku')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('sku')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="validationCustomtitle"><span>*</span> Quantity</label>
+                <input class="form-control" formControlName="qttInStock" id="validationCustomtitle" name="qttInStock"
+                       required="" type="text">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label"><span>*</span> Marks</label>
+                <select [(ngModel)]="selectedMark" class="custom-select" formControlName="mark" name="mark" required="">
+                  <option *ngFor="let group of marks " [ngValue]="group">{{group.name}}</option>
+                </select>
+              </div>
+<!--              <div class="form-group">-->
+<!--                <label class="col-form-label"><span>*</span> Categories</label>-->
+<!--                <select [(ngModel)]="selectedCategory" class="custom-select" formControlName="cat" name="cat"-->
+<!--                        required="">-->
+<!--                  <option *ngFor="let group of categories " [ngValue]="group">{{group.name}}</option>-->
+<!--                </select>-->
+<!--              </div>-->
+              <div class="form-group">
+                <label class="col-form-label"><span>*</span> SubCategories</label>
+                <select [(ngModel)]="selectedSubCategory" class="custom-select" formControlName="sub" name="sub"
+                        required="">
+                  <option *ngFor="let group of subCategories " [ngValue]="group">{{group.name}}</option>
+                </select>
+              </div>
+              <!--                        <div class="form-group">-->
+              <!--                            <label class="col-form-label">Sort Summary</label>-->
+              <!--                            <textarea rows="5" cols="12"></textarea>-->
+              <!--                        </div>-->
+              <div class="form-group">
+                <label class="col-form-label" for="validationCustom02"><span>*</span> Product Price</label>
+                <input class="form-control" formControlName="price" id="validationCustom02" name="price" required=""
+                       type="text">
+              </div>
+              <div class="form-group mb-0">
+                <label class="col-form-label pt-0"><span>*</span> Product Upload</label>
+                <input (change)="selectFile($event)" class="form-control" formControlName="image" id="validationCustom03" name="image"
+                       type="file">
+              </div>
+              <div class="form-group">
+                <label class="col-form-label"><span>*</span> HasVariant</label>
+                <div class="m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                  <label class="d-block" for="hasVariantTrue">
+
+                    <input type="radio" id="hasVariantTrue" name="hasVariant" formControlName="hasVariant" [value]="true">
+                    True
+                  </label>
+                  <label class="d-block" for="hasVariantFalse">
+                    <input type="radio" id="hasVariantFalse" name="hasVariant" formControlName="hasVariant" [value]="false">
+
+                    False
+                  </label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label pt-0" for="description"><span>*</span> Description</label>
+                <textarea class="form-control" formControlName="description" id="description" name="description" required=""></textarea>
+                <div *ngIf="editForm.get('description')!.invalid && (editForm.get('description')!.dirty || editForm.get('description')!.touched)">
+                  -->
+                  <small *ngIf="editForm.get('description')?.errors?.required" class="form-text text-danger"
+                         translate="entity.validation.required">
+                  </small>
+                </div>
+              </div>
+<!--              <div class="form-group">-->
+<!--                  <label class="col-form-label" for="description"><span>*</span> Description </label>-->
+<!--                <br/>-->
+<!--                  <textarea formControlName="description" id="description" language="en"-->
+<!--                             name="description"></textarea>-->
+<!--              </div>-->
+              <div class="product-buttons text-center">
+                <button (click)="saveProduct()" class="btn btn-primary mr-1" type="button">Add</button>
+                <button class="btn btn-light" type="button">Discard</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

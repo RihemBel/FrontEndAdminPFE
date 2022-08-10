@@ -1,0 +1,68 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>SubCategories</h5>
+                </div>
+                <div class="card-body">
+                    <div class="btn-popup pull-right">
+                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-original-title="test"
+                            data-target="#exampleModal" (click)="open(content)">Add Sub Category</button>
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                                <h5 class="modal-title f-w-600" id="exampleModalLabel">Add Sub Category</h5>
+                                <button type="button" class="close" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="needs-validation" [formGroup]="editForm">
+                                    <div class="form">
+                                        <div class="form-group">
+                                            <label for="validationCustom01" class="mb-1">Sub Category Name :</label>
+                                          <input class="form-control" name="name" formControlName="name" id="validationCustom01" type="text" >
+                                          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">-->
+                                            <small class="form-text text-danger"  *ngIf="editForm.get('name')?.errors?.required" translate="entity.validation.required">
+                                            </small>
+                                          </div>
+                                        </div>
+                                      <div class="form-group mb-0">
+                                        <label for="validationCustom02" class="mb-1">Sub Category Image :</label>
+                                        <input class="form-control" id="validationCustom02" type="file" name="image" formControlName="image" (change)="selectFile($event)">
+                                      </div>
+<!--                                      <div class="form-group mb-0">-->
+<!--                                        <label for="validationCustom02" class="mb-1">Category Name :</label>-->
+<!--                                        <input class="form-control" name=name" id="validationCustom03" type="text" name="image" formControlName="name" (change)="readUrl($event)">-->
+<!--                                      </div>-->
+                                      <div class="form-group mb-0">
+                                        <label for="validationCustom02" class="mb-1"> Categories :</label>
+                                        <select class="custom-select" required="" name="cat" formControlName="cat" [(ngModel)]="selectedCategory" >
+                                          <option [ngValue]="group" *ngFor="let group of categories ">{{group.name}}</option>
+                                        </select>
+<!--                                        <select class="custom-select" required="" [(ngModel)]="selectedCategory">-->
+<!--                                          <option [ngValue]="group" *ngFor="let group of categories | async">{{group.name}}</option>-->
+<!--                                        </select>-->
+                                      </div>
+                                    </div>
+                              </form>
+                            </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"  (click)="saveSubCategory();modal.close()">Save</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal"
+                                    (click)="modal.dismiss('Cross click')">Close</button>
+                          </div>
+                        </ng-template>
+                    </div>
+                  <div id="batchDelete" class="category-table custom-datatable">
+                    <div class="table-responsive">
+                      <ng2-smart-table [settings]="settings" [source]="subCategories" (deleteConfirm)="onDelete($event)"  (createConfirm)=" saveSubCategory()"></ng2-smart-table>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
